@@ -1,6 +1,8 @@
 from biblioteca import Biblioteca
 from libro import Libro
 
+import re
+
 biblioteca = Biblioteca()
 def main():
     opcion = -1
@@ -23,11 +25,10 @@ def main():
 def procesar_opcion(opcion):
     match opcion:
         case 1:
-            titulo = input("Introduce el titulo: ")
-            autor = input("Introduce al autor: ")
-            isbn = input("Introduce el isbn: ")
-            ejemplares = int(input("Introduce los ejemplares: "))
-            biblioteca.agregar_libro(Libro(titulo, autor, isbn, ejemplares))
+            try:
+                biblioteca.agregar_libro()
+            except ValueError as e:
+                print(repr(e))
         
         case 2:
             titulo = input("Introduce el titulo que buscar: ")

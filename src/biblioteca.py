@@ -1,5 +1,6 @@
 from libro import Libro
 import json
+import re
 
 JSON_FILENAME = "libros.json"
 
@@ -9,8 +10,31 @@ class Biblioteca:
         self.cargar(JSON_FILENAME)
 
 
-    def agregar_libro(self, libro):
-        self.libros[libro.isbn] = libro
+    def agregar_libro(self):
+        titulo = input("Introduce el titulo (no se perimte un título vacío): ")
+        if titulo == "":
+            raise ValueError("El títutlo no puede ser vacío")
+        
+        autor = input("Introduce al autor (no se permite una entrada vacía): ")
+        if autor == "":
+            raise ValueError("El autor no puede ser vacío")
+        
+        isbn = input("Introduce el isbn (tiene que un texto alfanumérico, sin espacios y no vacío): ") 
+        if isbn == "":
+            raise ValueError("El IBSN no puede ser vacío")
+        
+        if not re.match("^[A-Za-z0-9]*$", isbn):
+            raise ValueError("EL ISBN debe ser alfanumérico")
+        
+        ejemplares = 0
+        try:
+            ejemplares = int(input("Introduce los ejemplares (tiene que ser un número): "))
+        except:
+            raise ValueError("Los ejemplares deben ser un número entero")
+        else:
+            if ejemplares < 0:
+                raise ValueError("El número de ejemplares debe ser positivo")
+        self.libros[libro.isbn] = Libro(titulo, autor, isbn, ejemplares)
         self.guardar(JSON_FILENAME)
     
     def buscar_por_titulo(self, titulo):
@@ -73,7 +97,7 @@ class Biblioteca:
                 libro["titulo"], 
                 libro["autor"], 
                 libro["isbn"], 
-                libro["ejemplares"]
+                int(libro["ejemplares"])
             )
 
         
