@@ -1,0 +1,20 @@
+{
+  "12345678": {
+    "titulo": "Harry Potter",
+    "autor": "JK Rowling",
+    "isbn": "12345678",
+    "ejemplares": 12
+  },
+  "1234": {
+    "titulo": "Animales Fantasticos",
+    "autor": "JK Rowling",
+    "isbn": "1234",
+    "ejemplares": 8
+  },
+  "12345": {
+    "titulo": "Carrie",
+    "autor": "Stephen King",
+    "isbn": "12345",
+    "ejemplares": 8
+  }
+}
